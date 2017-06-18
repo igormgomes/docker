@@ -1,0 +1,44 @@
+get resultado:10-05-2015:megasena
+
+dell resultado:10-05-2015:megasena
+
+set resultado:10-05-2015:megasena "4, 16, 19, 23, ,28, 43"
+
+mset resultado:03-05-2015:megasena "1, 3, 17, 19, ,24, 43" 
+     resultado:22-04-2015:megasena "15, 18, 20, 32, 37, 41" 
+     resultado:15-04-2025:megasena "1, 3, 7, 10, 17, 40, 42"
+
+keys "resultado:*05-2015:megasena"
+
+keys "resultado:1?-05-2015:megasena"
+
+keys "resultado:*-2015:*sena"
+
+keys "resultado:?[37]-??-????:megasena" (OU)
+
+hset resultado:24-05-2015:megasena "numero" "13, 17, 19, 25, 28, 32"
+hset resultado:24-05-2015:megasena "ganhadores" 23
+
+hmset resultado:30-05-2015:megasena "numeros" "1, 2, 3, 4, 5, 6" "ganhadores" "10"
+
+hgetall resultado:30-05-2015:megasena
+
+expire "sessao:usuario:1675" 1800 (segundos)
+
+ttl "sessao:usuario:1675"
+
+incr pagina:/contato:25-05-2015
+
+incrby compras:20-05-2015:valor 2
+
+decrby compras:20-05-2015:valor 2
+
+incrbyfloat compras:20-05-2015:valor 22.50
+
+incrbyfloat "compras:25-05-2015" -5.60
+
+SETBIT acesso:25-06-2015 2 1
+
+BITCOUNT acesso:27-06-2015
+
+BITOP AND acesso:25-e-26-05-2015 acesso:25-06-2015 acesso:26-06-2015

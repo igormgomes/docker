@@ -1,0 +1,4 @@
+mongodb:
+  image: redis
+  volumes:
+    - ~/docker/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf

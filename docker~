@@ -1,0 +1,25 @@
+docker run ubuntu /bin/echo "Docker rodando"
+docker pull "nomedaimagem"
+docker ps -a
+docker run --name database -e MYSQL_ROOT_PASSWORD=test123 -d mysql
+docker run --name blog-alura --link database:mysql -e WORDPRESS_DB_PASSWORD=test123 -p 80:80 -d wordpress
+docker exec -it database bash (entrar em um container)
+docker rm focused_turing (remover container)
+docker rmi imagem (remover imagem)
+docker start/stop container
+docker run -it ubuntu bash
+docker commit --message "Instalação do apache" c12e4ccdc9d4 (id da imagem) ubuntu/apache (commitando a imagem)
+docker stop `docker ps -qa` destuir todos
+docker run -it -v $(pwd):/tmp ubuntu bash
+docker run --rm --link mysql_teste:db -it ubuntu bash
+docker ps -qa (listar os ids dos containers)
+docker stats 6ea43c43ed2c (monitorar)
+docker inspect bbd6d08d1521fc2981abff041c7b3e7769ffe4a64325ce7e0ea53d1f61a92d56  | grep IPAddress
+
+DOCKER COMPOSE
+	docker-compose up cria os containers
+	docker-compose up -d cria os containers e fica em foregound
+	docker-compose kill
+	docker-compose rm
+
+	for	((i=1;	i<=10;	i++));	do	curl	-IL	http://127.0.0.1;	done

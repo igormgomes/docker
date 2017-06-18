@@ -1,0 +1,60 @@
+db.alunos.insert({
+    "nome" : "Igor",
+    "data_nascimento" : ISODate("1994-03-02T03:00:00.000Z"),
+    "curso" : {
+        "nome" : "Sistemas de informaçao"
+    },
+    "notas" : [ 
+        10.0, 
+        10.0, 
+        10.0
+    ],
+    "habilidades" : [ 
+        {
+            "nome" : "Ingles",
+            "nivel" : "Avançado"
+        }
+    ]
+})
+
+db.alunos.insert({
+    nome : "Fernando",
+    data_nascimento : new Date(1994, 03, 26),
+    notas : [ 10, 4.5, 7],
+    curso : {
+        nome : "Sistema de informação"
+    }
+})
+
+db.alunos.remove({"_id" : ObjectId("58e9893b00a94a9411497c77")});
+
+db.alunos.find({
+    $or: [
+    {"curso.nome": "Sistemas de informaçao"},
+    {"curso.nome": "Ciencias da computaçao"}
+    ]
+ })
+
+db.alunos.update(
+ 	{"_id" : ObjectId("58e9947400a94a9411497c7b")}, 
+ 	{"$push": {"notas": {$each: [10, 9]}}}
+)
+
+db.alunos.find({"notas": {$gt: 9}})
+
+db.alunos.find({"curso.nome": "Sistemas de informação"})
+
+db.alunos.find({}).sort({"nome": 1})
+
+db.alunos.createIndex({"localizacao": "2dsphere"})
+
+db.alunos.aggregate([{
+    $geoNear:{
+        "near": {
+            "coordinates":[-23.588055, -46.632403],
+            "type":"Point"
+},
+"distanceField": "distancia.calculada",
+"spherical": true
+}
+}])
