@@ -2,3 +2,5 @@ mongodb:
   image: mongo
   volumes:
     - ~/docker/mongo/database/:/data/db
+  ports: 
+    - 27017:27017
