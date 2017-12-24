@@ -15,7 +15,7 @@ docker run --rm --link mysql_teste:db -it ubuntu bash
 docker ps -qa (listar os ids dos containers)
 docker stats 6ea43c43ed2c (monitorar)
 docker inspect bbd6d08d1521fc2981abff041c7b3e7769ffe4a64325ce7e0ea53d1f61a92d56  | grep IPAddress
-docker compose pruve - remove todos os containers em stop
+docker container prune - remove todos os containers em stop
 
 DOCKER COMPOSE
 	docker-compose up cria os containers
