@@ -1,8 +1,9 @@
-dmb:
+mysql:
   image: mysql
   volumes:
-    - ~/docker/mysql/database/:/var/lib/mysql/
-  environment: 
-    - MYSQL_ROOT_PASSWORD=test123
+    - /Users/igor/desenvolvimento/workspace/docker/mysql/database/:/var/lib/mysql/
+  environment:
+    - MYSQL_ROOT_USER=root
+    - MYSQL_ROOT_PASSWORD=root
   ports: 
     - 3306:3306
