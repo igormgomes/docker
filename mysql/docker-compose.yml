@@ -1,9 +1,11 @@
 mysql:
-  image: mysql
+  image: mysql:5
   volumes:
-    - /Users/igor/desenvolvimento/workspace/docker/mysql/database/:/var/lib/mysql/
+    - /Users/igor/volumes-docker/mysql:/var/lib/mysql
   environment:
-    - MYSQL_ROOT_USER=root
     - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_USER=bookserver
+    - MYSQL_PASSWORD=123
+    - MYSQL_DATABASE=bookserver
   ports: 
     - 3306:3306
