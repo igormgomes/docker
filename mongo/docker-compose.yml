@@ -4,7 +4,7 @@ services:
     image: mongo
      container_name: mongodb-desenv
     volumes:
-      - ~/docker/mongo/database/:/data/db
+      - /Users/igor/volumes-docker/mongo/:/data/db
     environment:
       - MONGODB_USERNAME=test1
       - MONGODB_PASSWORD=test1      
