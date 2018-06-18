@@ -1,6 +1,12 @@
-mongodb:
-  image: mongo
-  volumes:
-    - ~/docker/mongo/database/:/data/db
+version: '3'
+services:
+  mongodb:
+    image: mongo
+     container_name: mongodb-desenv
+    volumes:
+      - ~/docker/mongo/database/:/data/db
+    environment:
+      - MONGODB_USERNAME=test1
+      - MONGODB_PASSWORD=test1      
   ports: 
     - 27017:27017
