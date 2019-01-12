@@ -1,12 +1,11 @@
 version: '3'
 services:
   mongodb:
-    image: mongo
-     container_name: mongodb-desenv
+    image: mongo:3.2
+    container_name: mongodb-desenv
     volumes:
       - /Users/igor/volumes-docker/mongo/:/data/db
     environment:
-      - MONGODB_USERNAME=test1
-      - MONGODB_PASSWORD=test1      
+    - MONGODB_ROOT_PASSWORD=password123
   ports: 
     - 27017:27017
