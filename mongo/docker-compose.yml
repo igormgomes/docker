@@ -7,5 +7,5 @@ services:
       - /Users/igor/volumes-docker/mongo/:/data/db
     environment:
     - MONGODB_ROOT_PASSWORD=password123
-  ports: 
+    ports:
     - 27017:27017
