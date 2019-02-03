@@ -1,4 +1,9 @@
-redis:
-  image: redis
-  volumes:
-    - ~/docker/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+version: '3'
+services:
+  rabbitmq:
+    image: redis
+    container_name: redis-desenv
+    volumes:
+    - /Users/igor/volumes-docker/redis/:/data
+    ports:
+    - 6379:6379
