@@ -1,4 +1,3 @@
-
 version: "3"
 
 services:
@@ -8,9 +7,40 @@ services:
       - "4568-4576:4568-4576"
       - "${PORT_WEB_UI-8080}:${PORT_WEB_UI-8080}"
     environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
       - SERVICES=dynamodb:4569,kinesis:4568,sqs:4576
       - DEFAULT_REGION=us-east-1
-      - AWS_DEFAULT_REGION=us-east-1
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/private${TMPDIR}:/tmp/localstack"
+    networks:
+      - my_awesome_network
+
+  setup-resources:
+    image: mesosphere/aws-cli
+    volumes:
+      - ./dev_env:/project/dev_env
+    environment:
+      - AWS_ACCESS_KEY_ID=dummyaccess
+      - AWS_SECRET_ACCESS_KEY=dummysecret
+      - AWS_DEFAULT_REGION=us-east-1
+    entrypoint: /bin/sh -c
+    command: >
+      "
+        # Needed so all localstack components will startup correctly (i'm sure there's a better way to do this)
+        sleep 10;
+        aws dynamodb create-table --endpoint-url=http://localstack:4569 --table-name my_table \
+          --attribute-definitions AttributeName=key,AttributeType=S \
+          --key-schema AttributeName=key,KeyType=HASH \
+          --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5;
+        aws kinesis create-stream --endpoint-url=http://localstack:4568 --stream-name my_stream --shard-count 1;
+        aws sqs create-queue --endpoint-url=http://localstack:4576 --queue-name my_queue;
+        # you can go on and put initial items in tables...
+      "
+    networks:
+      - my_awesome_network
+    depends_on:
+      - localstack
+
+networks:
+  my_awesome_network:
