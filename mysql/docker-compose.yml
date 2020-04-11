@@ -4,8 +4,8 @@ mysql:
     - /Users/igor/volumes-docker/mysql:/var/lib/mysql
   environment:
     - MYSQL_ROOT_PASSWORD=root
-    - MYSQL_USER=bookserver
-    - MYSQL_PASSWORD=123
-    - MYSQL_DATABASE=bookserver
+    - MYSQL_USER=root
+    - MYSQL_PASSWORD=root
+    - MYSQL_DATABASE=todo
   ports: 
     - 3306:3306
